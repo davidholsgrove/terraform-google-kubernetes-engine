@@ -55,6 +55,11 @@ resource "kubernetes_service_account" "main" {
       "iam.gke.io/gcp-service-account" = google_service_account.cluster_service_account.email
     }
   }
+  lifecycle {
+    ignore_changes = [
+      secret
+    ]
+  }
 }
 
 module "annotate-sa" {
